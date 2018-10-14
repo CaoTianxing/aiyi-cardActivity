@@ -1,0 +1,98 @@
+/* CSS Document */
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body {
+  background-color: #000f25;
+  overflow-x: hidden;
+}
+img {
+  border: none;
+  vertical-align: top;
+}
+html,
+body,
+ul,
+li,
+img,
+a,
+p,
+div,
+form,
+input,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+  /*设置盒模型*/
+  box-sizing: border-box;
+  /*去除移动端特有的点击高亮效果*/
+  -webkit-tap-highlight-color: transparent;
+}
+input,
+textarea {
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+a {
+  outline: 0;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+a:link,
+a:active {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+  -webkit-touch-callout: none;
+}
+em,
+i {
+  font-style: normal;
+}
+ul,
+li {
+  padding: 0;
+  margin: 0;
+}
+li,
+ol {
+  list-style: none;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.clearfix::before,
+.clearfix::after {
+  content: '';
+  height: 0;
+  line-height: 0;
+  display: block;
+  visibility: hidden;
+  clear: both;
+}
+.m0 {
+  margin: 0;
+}
+.p0 {
+  margin: 0;
+}
