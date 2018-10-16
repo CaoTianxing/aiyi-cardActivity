@@ -2,14 +2,16 @@
   <div class="AppInGet">
     <header class="clearfix">
       <div class="header-top">
-        <div class="header-l"><a href=""></a></div>
+        <div class="header-l">
+          <!--<a href=""></a>-->
+        </div>
       </div>
       <div class="header-cont">
         <img src="../../assets/images/CollectingCards/10adad54645464ad.png" alt="">
       </div>
     </header>
     <div class="content">
-      <div class="rule clearfix"><a href="">活动规则&nbsp;<img src="../../assets/images/CollectingCards/xiaobaiqianjin2x.png" alt=""></a></div>
+      <div class="rule clearfix"><router-link to="/ctivityRules"><a href="">活动规则&nbsp;<img src="../../assets/images/CollectingCards/xiaobaiqianjin2x.png" alt=""></a></router-link></div>
       <div class="content-cent">
         <img :src="ImgUrl" alt="">
       </div>
@@ -86,6 +88,7 @@ export default {
     };
   },
   created() {
+
     this.cardDescription = localStorage.getItem("cardDescription");
     this.ImgUrl = localStorage.getItem("cardImg");
     this.ImgIndex = localStorage.getItem("cardType");
@@ -118,7 +121,8 @@ export default {
                 this.$refs.dnumj.style.display = "inline-block";
                 var dsq = setInterval(() => {
                   if (This.dnum <= 0) {
-                    clearInterval("dsq");
+                    clearInterval(dsq);
+                    console.log(This.$refs.countDown)
                     This.$refs.countDown.disabled = false;
                     This.$refs.countDown.style.color = "#f96";
                     This.$refs.dnumj.style.display = "none";
@@ -131,30 +135,34 @@ export default {
             });
         });
       } else {
-        console.log(this.phone.length);
         MessageBox("温馨提示", "请输入正确的手机号");
       }
     },
     login() {
-      this.$nextTick(() => {
-        this.$ajax
-          .post("customer/thirdLoginRegister.app", {
-            phone: this.phone,
-            codeReg: this.VerificationCode,
-            loginType: "3"
-          })
-          .then(res => {
-            console.log(res);
-            if (res.data.errcode == "00000") {
-              localStorage.setItem("customerId", res.data.data.customerId);
-              this.getCard();
-            } else {
-              if ((res.data.errcode = "10102")) {
-                MessageBox("温馨提示", res.data.errmsg);
+      if(this.phone !== "" && this.phone.length >= 11){
+        this.$nextTick(() => {
+          this.$ajax
+            .post("customer/thirdLoginRegister.app", {
+              phone: this.phone,
+              codeReg: this.VerificationCode,
+              loginType: "3"
+            })
+            .then(res => {
+              console.log(res);
+              if (res.data.errcode == "00000") {
+                localStorage.setItem("customerId", res.data.data.customerId);
+                this.getCard();
+              } else {
+                if ((res.data.errcode = "10102")) {
+                  MessageBox("温馨提示", res.data.errmsg);
+                }
               }
-            }
-          });
-      });
+            });
+        });
+      }else {
+        MessageBox("温馨提示", "请输入正确的手机号");
+      }
+
     },
     getCard() {
       this.$ajax
@@ -167,6 +175,9 @@ export default {
           if (res.data.errcode === "00000") {
             console.log("领取成功");
             this.$router.replace({ path: "/getSuccess" });
+          } else {
+            this.$router.replace({path: '/WeixinInGet'})
+            localStorage.setItem('cardDescription', this.cardDescription)
           }
         });
     }
@@ -186,17 +197,17 @@ export default {
       height: 80/100rem;
       width: 100%;
       > .header-l {
-        a {
-          width: 19/100rem;
-          height: 32/100rem;
-          margin-top: 30/100rem;
-          margin-left: 30/100rem;
-          background: url("../../assets/images/CollectingCards/return.png")
-            no-repeat center;
-          -webkit-background-size: cover;
-          background-size: cover;
-          display: block;
-        }
+        /*<!--a {-->*/
+          /*<!--width: 19/100rem;-->*/
+          /*<!--height: 32/100rem;-->*/
+          /*<!--margin-top: 30/100rem;-->*/
+          /*<!--margin-left: 30/100rem;-->*/
+          /*<!--background: url("../../assets/images/CollectingCards/return.png")-->*/
+            /*<!--no-repeat center;-->*/
+          /*<!-- -webkit-background-size: cover;-->*/
+          /*<!--background-size: cover;-->*/
+          /*<!--display: block;-->*/
+        /*<!--}-->*/
       }
     }
     .header-cont {

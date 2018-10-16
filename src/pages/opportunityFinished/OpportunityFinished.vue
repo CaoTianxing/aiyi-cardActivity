@@ -11,7 +11,7 @@
       </div>
     </header>
     <div class="content">
-      <div class="rule"><a href="">活动规则 <span></span></a></div>
+      <div class="rule"><router-link to="/ctivityRules"><a href="">活动规则 <span></span></a></router-link></div>
       <div class="content-cent">
         <div class="content-cent-mask"><img src="../../assets/images/CollectingCards/0181010105236.png" alt=""></div>
       </div>
@@ -28,7 +28,14 @@
 
 <script>
   export default {
-
+    created(){
+      if (this.debug) {
+        const script = document.createElement('script')
+        script.src = '//cdn.jsdelivr.net/npm/eruda'
+        document.body.appendChild(script)
+        script.onload = function () { window.eruda.init({ tool: ['console', 'network', 'sources','resources'] }) }
+      }
+    }
   }
 </script>
 

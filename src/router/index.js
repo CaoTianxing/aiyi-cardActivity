@@ -8,7 +8,6 @@ import CardPage from '../pages/cardPage/CardPage'
 import CtivityRules from '../pages/ctivityRules/CtivityRules'
 import Gift from '../pages/gift/Gift'
 import OpportunityFinished from '../pages/opportunityFinished/OpportunityFinished'
-import mint from '../components/mint.vue'
 
 Vue.use(Router)
 
@@ -59,10 +58,6 @@ export default new Router({
       name: 'OpportunityFinished',
       component: OpportunityFinished
     },
-    {
-      path: '/mint',
-      name: 'mint',
-      component: mint
-    }
+    
   ]
 })

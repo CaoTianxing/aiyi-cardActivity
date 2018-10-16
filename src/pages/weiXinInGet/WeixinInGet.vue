@@ -2,14 +2,16 @@
   <div class="weixinReceive">
     <header class="clearfix">
       <div class="header-top">
-        <div class="header-l"><a href=""></a></div>
+        <div class="header-l">
+          <!--<a href=""></a>-->
+        </div>
       </div>
       <div class="header-cont">
         <img src="../../assets/images/CollectingCards/10adad54645464ad.png" alt="">
       </div>
     </header>
     <div class="content">
-      <div class="rule clearfix"><a href="">活动规则&nbsp;<img src="../../assets/images/CollectingCards/xiaobaiqianjin2x.png" alt=""></a></div>
+      <div class="rule clearfix"><router-link to="/ctivityRules"><a href="">活动规则&nbsp;<img src="../../assets/images/CollectingCards/xiaobaiqianjin2x.png" alt=""></a></router-link></div>
       <div class="content-cent">
         <img :src="ImgUrl" alt="">
       </div>
@@ -72,6 +74,12 @@ export default {
    }
   },
   created(){
+    if (this.debug) {
+      const script = document.createElement('script')
+      script.src = '//cdn.jsdelivr.net/npm/eruda'
+      document.body.appendChild(script)
+      script.onload = function () { window.eruda.init({ tool: ['console', 'network', 'sources','resources'] }) }
+    }
     this.ImgUrl = localStorage.getItem('cardImg')
     this.ImgIndex = localStorage.getItem('cardType')
     this.cardDescription = localStorage.getItem('cardDescription')

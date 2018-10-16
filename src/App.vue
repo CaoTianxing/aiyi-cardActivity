@@ -5,6 +5,16 @@
 </template>
 
 <script>
+getRem(750, 100);
+      window.onresize = function () {
+        getRem(750, 100)
+      };
+
+      function getRem(pwiDth, pRem) {
+        var html = document.getElementsByTagName("html")[0];
+        var oWidth = document.documentElement.clientWidth || document.body.clientWidth;
+        html.style.fontSize = oWidth / pwiDth * pRem + "px";
+      }
 export default {
   name: 'App',
   data(){
@@ -13,6 +23,15 @@ export default {
     }
   },
   created(){
+    /**
+       * 在线调试
+       */
+      if (this.debug) {
+        const script = document.createElement('script')
+        script.src = '//cdn.jsdelivr.net/npm/eruda'
+        document.body.appendChild(script)
+        script.onload = function () { window.eruda.init({ tool: ['console', 'network', 'sources','resources'] }) }
+      }
     // ********************************************************
     this.browser= {
       versions: function () {
@@ -30,7 +49,7 @@ export default {
           iPad: u.indexOf('iPad') > -1, //是否iPad
           webApp: u.indexOf('1Safari') == -1, //是否web应该程序，没有头部与底部
           weixin: u.indexOf('MicroMessenger') > -1, //是否微信中打开
-          aiyi:u.indexOf('aiyi')>-1
+          aiyi:u.indexOf('Aiyi')>-1
         };
       }(),
       language: (navigator.browserLanguage || navigator.language).toLowerCase()
@@ -40,4 +59,5 @@ export default {
 </script>
 
 <style>
+  
 </style>

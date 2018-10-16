@@ -2,7 +2,9 @@
   <div class="getSuccess">
     <header class="clearfix">
       <div class="header-top">
-        <div class="header-l"><a href=""></a></div>
+        <div class="header-l">
+          <!--<a href=""></a>-->
+        </div>
       </div>
       <div class="header-cont">
         <img src="../../assets/images/CollectingCards/10adad54645464ad.png" alt="">
@@ -39,8 +41,8 @@
         </li>
       </ul>
     </div>
-    <div class="bot-btn">
-      <a href="">
+    <div class="bot-btn" ref="dkapp" style=" ">
+      <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.aiyi.aiyiapp">
         <img src="../../assets/images/CollectingCards/appck.png" alt="">
       </a>
     </div>
@@ -58,9 +60,32 @@
         cardNum3: '',
         cardNum4: '',
         cardNum5: '',
+        browser:{}
       }
     },
     created(){
+      
+      this.browser = {
+        versions: function () {
+          var u = navigator.userAgent;
+          var app = navigator.appVersion;
+          return {         //移动终端浏览器版本信息
+            trident: u.indexOf('Trident') > -1, //IE内核
+            presto: u.indexOf('Presto') > -1, //opera内核
+            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+            iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+            iPad: u.indexOf('iPad') > -1, //是否iPad
+            webApp: u.indexOf('1Safari') == -1, //是否web应该程序，没有头部与底部
+            weixin: u.indexOf('MicroMessenger') > -1, //是否微信中打开
+            aiyi: u.indexOf('Aiyi') > -1
+          };
+        }(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+      }
       // 获取领取成功后的图片
       this.cardImg = localStorage.getItem('cardImg')
       this.getAllcard()
@@ -197,6 +222,8 @@
     .footer{
       height: 244/100rem;
       background-color: #000f25;
+      padding-bottom: 50/100rem;
+      box-sizing: content-box;
       ul{
         /*<!--padding-top: 73/100rem ;-->*/
         padding-top: 40/100rem ;

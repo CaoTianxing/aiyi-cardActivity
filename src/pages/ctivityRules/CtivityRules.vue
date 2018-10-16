@@ -2,7 +2,9 @@
   <div class="getSuccess">
     <header class="clearfix">
       <div class="header-top">
-        <div class="header-l"><a href=""></a></div>
+        <div class="header-l">
+          <!--<a href=""></a>-->
+        </div>
       </div>
       <div class="header-cont">
         <img src="../../assets/images/CollectingCards/10adad54645464ad.png" alt="">
@@ -11,12 +13,12 @@
     <div class="content">
       <p>1、扫描瓷博会现场将放置“制泥、拉坯、绘画、施釉、烧窑”五种卡片的二维码，领取青花瓷主要制作工艺卡片；</p>
       <p>2、工艺卡片除扫描集卡二维码外，也可以通过好友赠送获得；</p>
-      <p>3、所有在10月22日18：58集齐五种工艺卡片，就完成了“烧成青花瓷瓶”的任务，参与平均分配爱艺APP提供的10万人民币现金；</p>
-      <p>4、用户所得奖金，在10月22日19：00分将以支付宝现金红包的形式在爱艺APP内发放。</p>
+      <p>3、所有在10月22日18:58集齐五种工艺卡片，就完成了“烧成青花瓷瓶”的任务，参与平均分配爱艺APP提供的10万人民币现金；</p>
+      <p>4、用户所得奖金，在10月22日19:00分将以支付宝现金红包的形式在爱艺APP内发放。</p>
       <p>*本次活动最终解释权归南京爱艺电子商务有限公司所有</p>
     </div>
     <div class="footer">
-      <ul class="clearfix">
+      <ul class="">
         <li>
           <img src="../../assets/images/CollectingCards/zhini.png" alt="">
         </li>
@@ -34,8 +36,8 @@
         </li>
       </ul>
     </div>
-    <div class="bot-btn">
-      <a href="">
+    <div class="bot-btn" ref="dkapp" style="display: none">
+      <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.aiyi.aiyiapp">
         <img src="../../assets/images/CollectingCards/appck.png" alt="">
       </a>
     </div>
@@ -44,7 +46,37 @@
 
 <script>
   export default {
-    name: "weiXinInGet"
+    name: "weiXinInGet",
+    created(){
+      
+      this.browser = {
+        versions: function () {
+          var u = navigator.userAgent;
+          var app = navigator.appVersion;
+          return {         //移动终端浏览器版本信息
+            trident: u.indexOf('Trident') > -1, //IE内核
+            presto: u.indexOf('Presto') > -1, //opera内核
+            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或uc浏览器
+            iPhone: u.indexOf('iPhone') > -1, //是否为iPhone或者QQHD浏览器
+            iPad: u.indexOf('iPad') > -1, //是否iPad
+            webApp: u.indexOf('1Safari') == -1, //是否web应该程序，没有头部与底部
+            weixin: u.indexOf('MicroMessenger') > -1, //是否微信中打开
+            aiyi: u.indexOf('Aiyi') > -1
+          };
+        }(),
+        language: (navigator.browserLanguage || navigator.language).toLowerCase()
+      }
+
+    },
+    mounted(){
+      if(!this.browser.versions.aiyi){
+        this.$refs.dkapp.style.display = 'block'
+      }
+    }
   }
 </script>
 
@@ -106,16 +138,21 @@
     }
     .footer{
       height: 244/100rem;
-      margin-top: 140/100rem;
+      margin-top: -2/100rem;
+      background-color: #fff;
+      width: 100%;
+      float: left;
+      box-sizing: content-box;
+      // padding-bottom: 150/100rem;
       ul{
-        padding-top: 40/100rem ;
+        padding-top: 40/100rem;
         padding-left: 46/100rem;
         li {
           width: 90/100rem;
           height: 120/100rem;
           position: relative;
           border-radius: 6/100rem;
-          border: solid 2/100rem #ffffff;
+          border: solid 2/100rem #fff;
           float: left;
           margin-right: 48/100rem;
           img{
