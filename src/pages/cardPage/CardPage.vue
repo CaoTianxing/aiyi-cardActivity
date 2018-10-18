@@ -261,7 +261,7 @@
     mounted() {
     },
     methods: {
-      // 领取卡片方法
+      // 领取卡片方法.
       getCard() {
         this.customerId = localStorage.getItem("customerId");
         // console.log(this.customerId)
